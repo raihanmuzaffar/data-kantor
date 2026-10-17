@@ -33,8 +33,11 @@ class RoleSeeder extends Seeder
             'dokumen.view', 'dokumen.create', 'dokumen.update', 'dokumen.delete',
             'dokumen_category.view', 'dokumen_category.create', 'dokumen_category.update', 'dokumen_category.delete',
 
-            // CUTI (BARU)
+            // CUTI
             'cuti.view', 'cuti.create', 'cuti.update', 'cuti.delete', 'cuti.approve',
+
+            // ASET (BARU)
+            'aset.view', 'aset.create', 'aset.update', 'aset.delete',
 
             // Audit
             'audit.view',
@@ -54,6 +57,7 @@ class RoleSeeder extends Seeder
             'dokumen.view', 'dokumen.create', 'dokumen.update', 'dokumen.delete',
             'dokumen_category.view', 'dokumen_category.create', 'dokumen_category.update', 'dokumen_category.delete',
             'cuti.view', 'cuti.create', 'cuti.update', 'cuti.delete', 'cuti.approve',
+            'aset.view', 'aset.create', 'aset.update', 'aset.delete',
             'audit.view',
         ]);
 
@@ -62,7 +66,8 @@ class RoleSeeder extends Seeder
             'karyawan.view',
             'pengumuman.view', 'pengumuman.create', 'pengumuman.update',
             'dokumen.view', 'dokumen_category.view',
-            'cuti.view', 'cuti.approve', // Manajer bisa melihat & menyetujui cuti
+            'cuti.view', 'cuti.approve',
+            'aset.view', // Manajer bisa melihat aset
         ]);
 
         Role::findByName('karyawan')->syncPermissions([
@@ -70,7 +75,8 @@ class RoleSeeder extends Seeder
             'karyawan.view',
             'pengumuman.view',
             'dokumen.view', 'dokumen_category.view',
-            'cuti.view', 'cuti.create', // Karyawan bisa melihat & mengajukan cuti
+            'cuti.view', 'cuti.create',
+            'aset.view', // Karyawan bisa melihat aset yang dipegang
         ]);
     }
 }
