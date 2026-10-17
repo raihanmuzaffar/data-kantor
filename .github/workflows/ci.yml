@@ -58,4 +58,6 @@ jobs:
         DB_DATABASE: testing
         DB_USERNAME: postgres
         DB_PASSWORD: password
-      run: php artisan test
+      run: |
+        php artisan migrate --force
+        php artisan test
