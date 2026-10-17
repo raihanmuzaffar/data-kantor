@@ -3,13 +3,15 @@
 namespace App\Exports;
 
 use App\Models\Employee;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
 class EmployeesExport implements FromCollection, WithHeadings, WithMapping
 {
-    public function collection()
+    // Tambahkan tipe return : Collection di sini
+    public function collection(): Collection
     {
         return Employee::with('division')->get();
     }
@@ -17,7 +19,7 @@ class EmployeesExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'NIK Karyawan', 'Nama Lengkap', 'Divisi', 'Jabatan', 'Status', 'No. HP', 'Email'
+            'NIK Karyawan', 'Nama Lengkap', 'Divisi', 'Jabatan', 'Status', 'No. HP', 'Email',
         ];
     }
 

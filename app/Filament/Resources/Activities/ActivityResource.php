@@ -6,18 +6,25 @@ use App\Filament\Resources\Activities\Pages\ListActivities;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
-use Spatie\Activitylog\Models\Activity; // <-- Gunakan model Spatie
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table; // <-- Gunakan model Spatie
+use Spatie\Activitylog\Models\Activity;
 use UnitEnum;
 
 class ActivityResource extends Resource
 {
     protected static ?string $model = Activity::class;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
+
     protected static ?string $navigationLabel = 'Audit Log';
+
     protected static ?string $modelLabel = 'Log';
+
     protected static ?string $pluralModelLabel = 'Log Aktivitas';
+
     protected static UnitEnum|string|null $navigationGroup = 'Administrasi';
+
     protected static ?int $navigationSort = 3;
 
     public static function canViewAny(): bool
@@ -29,16 +36,16 @@ class ActivityResource extends Resource
     {
         return $table
             ->columns([
-                \Filament\Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('Waktu')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
-                \Filament\Tables\Columns\TextColumn::make('causer.name')
+                TextColumn::make('causer.name')
                     ->label('Oleh')
                     ->default('Sistem')
                     ->badge()
                     ->color('info'),
-                \Filament\Tables\Columns\TextColumn::make('event')
+                TextColumn::make('event')
                     ->label('Aksi')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -47,10 +54,10 @@ class ActivityResource extends Resource
                         'deleted' => 'danger',
                         default => 'gray',
                     }),
-                \Filament\Tables\Columns\TextColumn::make('subject_type')
+                TextColumn::make('subject_type')
                     ->label('Modul')
                     ->formatStateUsing(fn ($state) => class_basename($state)),
-                \Filament\Tables\Columns\TextColumn::make('description')
+                TextColumn::make('description')
                     ->label('Deskripsi')
                     ->wrap(),
             ])
