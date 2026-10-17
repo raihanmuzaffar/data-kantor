@@ -28,6 +28,12 @@ Dibangun sebagai *project portfolio* yang mendemonstrasikan praktik *software en
 - **Testing & QA:** PHPUnit, Laravel Pint
 - **DevOps:** DDEV (Docker), GitHub Actions (CI)
 
+
+## 📊 Project Management
+
+Kami melacak setiap fitur dan perbaikan menggunakan GitHub Projects. 
+![alt text](image.png)
+
 ## 🚀 Cara Menjalankan
 
 Prasyarat: **Docker** dan **DDEV** sudah terinstall di sistem Anda.
