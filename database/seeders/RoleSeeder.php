@@ -29,8 +29,9 @@ class RoleSeeder extends Seeder
             // Pengumuman
             'pengumuman.view', 'pengumuman.create', 'pengumuman.update', 'pengumuman.delete',
 
-            // Dokumen (nanti dipakai)
+            // Dokumen & Kategori
             'dokumen.view', 'dokumen.create', 'dokumen.update', 'dokumen.delete',
+            'dokumen_category.view', 'dokumen_category.create', 'dokumen_category.update', 'dokumen_category.delete',
 
             // Audit
             'audit.view',
@@ -40,12 +41,15 @@ class RoleSeeder extends Seeder
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
 
+        // Super admin otomatis bypass via Gate::before
+
         Role::findByName('admin')->syncPermissions([
             'user.view',
             'divisi.view', 'divisi.create', 'divisi.update',
             'karyawan.view', 'karyawan.create', 'karyawan.update',
             'pengumuman.view', 'pengumuman.create', 'pengumuman.update', 'pengumuman.delete',
-            'dokumen.view', 'dokumen.create', 'dokumen.update',
+            'dokumen.view', 'dokumen.create', 'dokumen.update', 'dokumen.delete',
+            'dokumen_category.view', 'dokumen_category.create', 'dokumen_category.update', 'dokumen_category.delete',
             'audit.view',
         ]);
 
@@ -53,14 +57,14 @@ class RoleSeeder extends Seeder
             'divisi.view',
             'karyawan.view',
             'pengumuman.view', 'pengumuman.create', 'pengumuman.update',
-            'dokumen.view',
+            'dokumen.view', 'dokumen_category.view',
         ]);
 
         Role::findByName('karyawan')->syncPermissions([
             'divisi.view',
             'karyawan.view',
             'pengumuman.view',
-            'dokumen.view',
+            'dokumen.view', 'dokumen_category.view',
         ]);
     }
 }
