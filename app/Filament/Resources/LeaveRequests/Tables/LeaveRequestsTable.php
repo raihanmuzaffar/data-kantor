@@ -9,7 +9,6 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Auth;
 
 class LeaveRequestsTable
 {
@@ -53,30 +52,32 @@ class LeaveRequestsTable
                     ]),
             ])
             ->recordActions([
-                // Tombol Approve
+                // Tombol Approve menggunakan Policy
                 Action::make('approve')
                     ->label('Setujui')
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
-                    ->visible(fn ($record) => $record->status === 'pending' && (Auth::user()->hasRole('super_admin') || Auth::user()->hasRole('admin') || Auth::user()->hasRole('manajer')))
+                    ->visible(fn ($record) => auth()->user()->can('approve', $record))
+                    ->requiresConfirmation()
                     ->action(function ($record) {
                         $record->update([
                             'status' => 'approved',
-                            'approved_by' => Auth::id(),
+                            'approved_by' => auth()->id(),
                             'approved_at' => now(),
                         ]);
                     }),
 
-                // Tombol Reject
+                // Tombol Reject menggunakan Policy
                 Action::make('reject')
                     ->label('Tolak')
                     ->icon('heroicon-o-x-circle')
                     ->color('danger')
-                    ->visible(fn ($record) => $record->status === 'pending' && (Auth::user()->hasRole('super_admin') || Auth::user()->hasRole('admin') || Auth::user()->hasRole('manajer')))
+                    ->visible(fn ($record) => auth()->user()->can('reject', $record))
+                    ->requiresConfirmation()
                     ->action(function ($record) {
                         $record->update([
                             'status' => 'rejected',
-                            'approved_by' => Auth::id(),
+                            'approved_by' => auth()->id(),
                             'approved_at' => now(),
                         ]);
                     }),
