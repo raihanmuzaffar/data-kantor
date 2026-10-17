@@ -8,7 +8,9 @@ use Filament\Widgets\ChartWidget;
 class EmploymentStatusChart extends ChartWidget
 {
     protected ?string $heading = 'Status Kepegawaian';
+
     protected static ?int $sort = 3;
+
     protected int|string|array $columnSpan = 1;
 
     protected function getData(): array

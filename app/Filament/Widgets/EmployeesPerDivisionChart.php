@@ -8,7 +8,9 @@ use Filament\Widgets\ChartWidget;
 class EmployeesPerDivisionChart extends ChartWidget
 {
     protected ?string $heading = 'Karyawan per Divisi';
+
     protected static ?int $sort = 2;
+
     protected int|string|array $columnSpan = 1;
 
     protected function getData(): array

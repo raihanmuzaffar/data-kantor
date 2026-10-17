@@ -18,11 +18,11 @@ class EmployeeFactory extends Factory
         return [
             'user_id' => null,
             'division_id' => Division::query()->inRandomOrder()->value('id'),
-            'employee_number' => 'EMP-' . strtoupper(fake()->unique()->bothify('???####')),
+            'employee_number' => 'EMP-'.strtoupper(fake()->unique()->bothify('???####')),
             'full_name' => fake()->name($gender === 'male' ? 'male' : 'female'),
             'nickname' => fake()->firstName(),
             'email' => fake()->unique()->safeEmail(),
-            'phone' => '08' . fake()->numerify('##########'),
+            'phone' => '08'.fake()->numerify('##########'),
             'nik' => fake()->numerify('################'),
             'npwp' => fake()->numerify('##.###.###.#-###.###'),
             'gender' => $gender,
@@ -39,7 +39,7 @@ class EmployeeFactory extends Factory
             'city' => fake()->city(),
             'province' => fake()->state(),
             'emergency_contact_name' => fake()->name(),
-            'emergency_contact_phone' => '08' . fake()->numerify('##########'),
+            'emergency_contact_phone' => '08'.fake()->numerify('##########'),
             'is_active' => true,
         ];
     }

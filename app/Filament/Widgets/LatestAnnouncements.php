@@ -10,7 +10,9 @@ use Filament\Widgets\TableWidget as BaseWidget;
 class LatestAnnouncements extends BaseWidget
 {
     protected static ?string $heading = 'Pengumuman Terbaru';
+
     protected static ?int $sort = 4;
+
     protected int|string|array $columnSpan = 'full';
 
     public function table(Table $table): Table

@@ -37,7 +37,7 @@ class Announcement extends Model
     {
         static::saving(function (Announcement $announcement) {
             if (empty($announcement->slug)) {
-                $announcement->slug = Str::slug($announcement->title) . '-' . Str::lower(Str::random(5));
+                $announcement->slug = Str::slug($announcement->title).'-'.Str::lower(Str::random(5));
             }
 
             if ($announcement->is_published && empty($announcement->published_at)) {
