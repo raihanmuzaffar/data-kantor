@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Employees\Tables;
 
+use App\Exports\EmployeesExport; // <-- Tambahan
+use Filament\Actions\Action; // <-- Tambahan
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -14,6 +16,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Maatwebsite\Excel\Facades\Excel; // <-- Tambahan
 
 class EmployeesTable
 {
@@ -111,6 +114,12 @@ class EmployeesTable
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
+                // TOMBOL EXPORT EXCEL DITAMBAHKAN DI SINI
+                Action::make('export_excel')
+                    ->label('Export Excel')
+                    ->icon('heroicon-m-arrow-down-tray')
+                    ->color('success')
+                    ->action(fn () => Excel::download(new EmployeesExport, 'data-karyawan.xlsx')),
             ])
             ->defaultSort('full_name');
     }
