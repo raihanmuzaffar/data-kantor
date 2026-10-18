@@ -74,7 +74,7 @@ class ListAttendances extends ListRecords
                 ->visible(fn () => $user->can('clock', Attendance::class))
                 ->action(function () use ($todayAttendance) {
                     $now = now();
-                    $workEnd = $now->copy()->setTimeFromTimeString(Attendance::WORK_END);
+                    $workEnd = $now->copy()->setTimeFromTimeString(Attendance::workEnd());
                     $status = $todayAttendance->status;
 
                     if ($now->lt($workEnd) && $status === 'present') {

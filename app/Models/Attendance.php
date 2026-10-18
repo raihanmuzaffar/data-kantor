@@ -11,12 +11,6 @@ class Attendance extends Model
 {
     use HasFactory;
 
-    public const WORK_START = '09:00';
-
-    public const LATE_TOLERANCE_MINUTES = 15;
-
-    public const WORK_END = '17:00';
-
     protected $fillable = [
         'employee_id',
         'date',
@@ -35,6 +29,21 @@ class Attendance extends Model
         'clock_out' => 'datetime',
     ];
 
+    public static function workStart(): string
+    {
+        return config('attendance.work_start', '09:00');
+    }
+
+    public static function workEnd(): string
+    {
+        return config('attendance.work_end', '17:00');
+    }
+
+    public static function lateToleranceMinutes(): int
+    {
+        return (int) config('attendance.late_tolerance_minutes', 15);
+    }
+
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
@@ -46,8 +55,8 @@ class Attendance extends Model
             return 'absent';
         }
 
-        $workStart = $clockIn->copy()->setTimeFromTimeString(self::WORK_START);
-        $lateThreshold = $workStart->copy()->addMinutes(self::LATE_TOLERANCE_MINUTES);
+        $workStart = $clockIn->copy()->setTimeFromTimeString(self::workStart());
+        $lateThreshold = $workStart->copy()->addMinutes(self::lateToleranceMinutes());
 
         if ($clockIn->gt($lateThreshold)) {
             return 'late';
