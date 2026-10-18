@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Reimbursements\Schemas;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -60,10 +60,10 @@ class ReimbursementForm
                     ->rows(3)
                     ->columnSpanFull(),
 
-                SpatieMediaLibraryFileUpload::make('receipt')
+                FileUpload::make('receipt_path')
                     ->label('Bukti / Nota')
-                    ->collection('receipt')
                     ->acceptedFileTypes(['image/*', 'application/pdf'])
+                    ->directory('reimbursements/receipts')
                     ->maxSize(5120)
                     ->columnSpanFull(),
             ])->columns(2);
