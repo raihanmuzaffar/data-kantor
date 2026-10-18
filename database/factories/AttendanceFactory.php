@@ -4,10 +4,11 @@ namespace Database\Factories;
 
 use App\Models\Attendance;
 use App\Models\Employee;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Attendance>
+ * @extends Factory<Attendance>
  */
 class AttendanceFactory extends Factory
 {
@@ -22,7 +23,7 @@ class AttendanceFactory extends Factory
         );
         $clockOut = (clone $clockIn)->modify('+'.fake()->numberBetween(6, 10).' hours');
 
-        $status = Attendance::determineStatus(\Carbon\Carbon::instance($clockIn));
+        $status = Attendance::determineStatus(Carbon::instance($clockIn));
 
         return [
             'employee_id' => Employee::factory(),

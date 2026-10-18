@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Attendances\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -93,8 +94,8 @@ class AttendancesTable
 
                 Filter::make('date')
                     ->form([
-                        \Filament\Forms\Components\DatePicker::make('from')->label('Dari'),
-                        \Filament\Forms\Components\DatePicker::make('until')->label('Sampai'),
+                        DatePicker::make('from')->label('Dari'),
+                        DatePicker::make('until')->label('Sampai'),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query

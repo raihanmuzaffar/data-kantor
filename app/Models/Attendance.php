@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,9 @@ class Attendance extends Model
     use HasFactory;
 
     public const WORK_START = '09:00';
+
     public const LATE_TOLERANCE_MINUTES = 15;
+
     public const WORK_END = '17:00';
 
     protected $fillable = [
@@ -37,7 +40,7 @@ class Attendance extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public static function determineStatus(?\Carbon\Carbon $clockIn): string
+    public static function determineStatus(?Carbon $clockIn): string
     {
         if (! $clockIn) {
             return 'absent';
