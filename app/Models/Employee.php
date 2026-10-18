@@ -75,6 +75,11 @@ class Employee extends Model implements HasMedia
         return $this->hasMany(Attendance::class);
     }
 
+    public function reimbursements(): HasMany
+    {
+        return $this->hasMany(Reimbursement::class);
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('ktp')->singleFile();

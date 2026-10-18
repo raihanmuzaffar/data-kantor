@@ -42,6 +42,9 @@ class RoleSeeder extends Seeder
             // ABSENSI
             'absensi.view', 'absensi.create', 'absensi.update', 'absensi.delete',
 
+            // REIMBURSE
+            'reimburse.view', 'reimburse.create', 'reimburse.update', 'reimburse.delete', 'reimburse.approve',
+
             // Audit
             'audit.view',
         ];
@@ -62,6 +65,7 @@ class RoleSeeder extends Seeder
             'cuti.view', 'cuti.create', 'cuti.update', 'cuti.delete', 'cuti.approve',
             'aset.view', 'aset.create', 'aset.update', 'aset.delete',
             'absensi.view', 'absensi.create', 'absensi.update', 'absensi.delete',
+            'reimburse.view', 'reimburse.create', 'reimburse.update', 'reimburse.delete', 'reimburse.approve',
             'audit.view',
         ]);
 
@@ -73,6 +77,7 @@ class RoleSeeder extends Seeder
             'cuti.view', 'cuti.approve',
             'aset.view',
             'absensi.view', 'absensi.create',
+            'reimburse.view', 'reimburse.approve',
         ]);
 
         Role::findByName('karyawan')->syncPermissions([
@@ -83,6 +88,7 @@ class RoleSeeder extends Seeder
             'cuti.view', 'cuti.create',
             'aset.view',
             'absensi.view', 'absensi.create',
+            'reimburse.view', 'reimburse.create', 'reimburse.update',
         ]);
     }
 }
