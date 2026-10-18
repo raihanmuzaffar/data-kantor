@@ -65,10 +65,14 @@ class Employee extends Model implements HasMedia
         return $this->hasMany(LeaveRequest::class);
     }
 
-    // TAMBAHAN: Relasi ke Manajemen Aset
     public function assets(): HasMany
     {
         return $this->hasMany(Asset::class);
+    }
+
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class);
     }
 
     public function registerMediaCollections(): void
